@@ -1,5 +1,9 @@
 library(readxl)
 library(tidyverse)
+library(shiny)
+library(shinydashboard)
+library(data.table)
+library(DT)
 
 install_github("ctkremer/mleTools")
 
@@ -23,10 +27,14 @@ plot(gc_fit3)
 growth_rate <- MBTWKD1 %>%
   arrange(Time) %>%
   mutate(Diff_hour = Time - lag(Time),  
-         Diff_growth = Fructose - lag(Fructose), 
-         Rate_percent = (Diff_growth / Diff_hour)/Fructose * 100) 
+         Diff_growth = Biomass - lag(Biomass), 
+         Rate_percent = (Diff_growth / Diff_hour)/Biomass * 100) 
 
 Average_growth <- mean(growth_rate$Rate_percent, na.rm = TRUE)
 
+
+
+
+shiny::runGitHub("FitGrowth", "angelovangel", subdir = "v02-drc/")
 
 
