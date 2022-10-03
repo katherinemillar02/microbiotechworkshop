@@ -5,7 +5,7 @@ library(shinydashboard)
 library(data.table)
 library(DT)
 
-install_github("ctkremer/mleTools")
+
 
 MBTWKD1 <- read_excel("data/MBTWKD1.xlsx")
 
